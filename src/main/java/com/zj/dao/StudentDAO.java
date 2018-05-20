@@ -15,4 +15,9 @@ public interface StudentDAO {
      * @return 全部学生信息
      */
     List<Student> queryAll();
+
+    /**
+     * 插入学生信息
+     */
+    void insert(Student student);
 }

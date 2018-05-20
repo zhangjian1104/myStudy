@@ -21,4 +21,11 @@ public class StudentDAOImplTest {
             System.out.println(student.toString());
         }
     }
+
+    @Test
+    public void testInsert() {
+        StudentDAO studentDAO = new StudentDAOImpl();
+        Student student = new Student("insert2", 45);
+        studentDAO.insert(student);
+    }
 }

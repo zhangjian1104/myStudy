@@ -26,7 +26,7 @@ public class StudentDAOImpl implements StudentDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        String sql = "select id ,name ,age from student";
+        String sql = "select id ,name ,age from spring_data.student";
 
         try {
             connection = JDBCUtil.getConnection();
@@ -48,5 +48,28 @@ public class StudentDAOImpl implements StudentDAO {
         }
 
         return students;
+    }
+
+    /**
+     * 插入学生信息
+     */
+    @Override
+    public void insert(Student student) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String sql = "insert into spring_data.student(name, age) values (?,?)";
+
+        try {
+            connection = JDBCUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, student.getName());
+            preparedStatement.setInt(2,student.getAge());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtil.realease(null,preparedStatement,connection);
+        }
     }
 }
